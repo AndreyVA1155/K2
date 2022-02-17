@@ -1,7 +1,5 @@
 <?php
-return [
-    'host' => 'localhost',
-    'user' => '1155',
-    'password' => '1155',
-    'dbname' => 'base'
-    ];
+define('HOST', 'localhost');
+define('USER', '1155');
+define('PASSWORD', '1155');
+define('DBNAME', 'k2');
