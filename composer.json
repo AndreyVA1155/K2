@@ -1,0 +1,20 @@
+{
+    "name": "vendor/composer",
+    "description": "test",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Andrey V",
+            "email": "kazakmt4@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "illuminate/database": "^8.74"
+    }
+}
