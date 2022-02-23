@@ -2,7 +2,7 @@
 <head>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <title>
-        <?= $title;?>
+        <?= $title ?>
     </title>
     <meta charset="UTF-8">
 </head>

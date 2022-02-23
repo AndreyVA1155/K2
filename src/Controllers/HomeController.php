@@ -3,71 +3,27 @@
 namespace App\Controllers;
 
 use App\View\View;
-use App\Controllers\Post;
-use PDO;
-use PDOException;
-
-/**
- * @param string connect функиция создает подключения в БД SQl, connect()
- */
-function connect()
-{
-    static $connect;
-
-    if (empty($connect)) {
-        try {
-            $connect = new PDO('mysql:host=' . HOST . '; dbname=' . DBNAME,
-                USER, PASSWORD);
-            if (!$connect->errorInfo()) {
-                echo "\nPDO::errorInfo():\n";
-                print_r($connect->errorInfo());
-                die();
-            }
-        } catch (PDOException $exception) {
-            echo 'нет доступа к базе данных ' . $exception->getMessage();
-            exit;
-        }
-
-    }
-    return $connect;
-}
-
-$posts = connect()->prepare(
-    "SELECT * FROM posts");
-$posts->execute();
-$postsAll = $posts->fetchAll();
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 class HomeController
 {
-    public
-        $head,
-        $topic,
-        $text;
-
-    public function getHead() {
-        return $this->head;
-    }
-
-    public function getTopic() {
-        return $this->topic;
-    }
-
-    public function getText() {
-        return $this->text;
-    }
-
-    public function homepage()
+    const LIMIT = 10;
+    public function index()
     {
-        return new View('homepage.homepage',
-            [
-                'title' => 'Главная страница',
-                'head' => $this->getHead(),
-                'topic' => $this->getTopic(),
-                'text' => $this->getText()
-            ]);
+//        $offset = intval($_REQUEST['offset'] ?? 0);
+//        $blogs = Capsule::table('blog')->limit(self::LIMIT)->offset($offset)->get();
+//        $count = Capsule::table('blog')->count();
+//        //код для определения количества страниц ждя пагинации
+//        if (($count % self::LIMIT) == 0) {
+//            $pages = intdiv($count, self::LIMIT);
+//        } else {
+//            $pages = intdiv($count, self::LIMIT) + 1;
+//        }
+//
+//        return new View('blogs', [
+//            'title' => 'Главная страница',
+//            'blogs' => $blogs,
+//            'pages' => $pages
+//        ]);
     }
-}
-
-foreach ($postsAll as $item) {
-$item = new HomeController();
 }
