@@ -2,13 +2,21 @@
 
 namespace App\Controllers;
 
-use App\Class\AuthUserser\Auth;
+use App\Models\User;
 use App\View\View;
 
-class ProfileController extends Auth
+//контроллер для вывод профиля пользователя
+class ProfileController
 {
     public function profile()
     {
-        return new View('profile.profile', ['title' => 'личный кабинет']);
+        $users = User::where('name', 'ivan')
+            ->get();
+
+        return new View('profile.profile',
+            [
+                'title' => 'Личный кабинет',
+                'users' => $users
+            ]);
     }
 }

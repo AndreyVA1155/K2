@@ -9,4 +9,5 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Post extends Model
 {
+    protected $table = 'posts';
 }

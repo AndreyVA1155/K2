@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-use App\Class\AuthUserser\Auth;
 use App\View\View;
 
+//контроллер для изменения статуса подписки
 class ChangeStatusSubscribeController
 {
     public function changeStatusSubscribe()

@@ -21,7 +21,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR .'layout' . DIRECT
 авторизация
 
     <br>
-    <form id="authorization" action="/" name="authorization" method="post">
+    <form id="authorization" action="/authorization" name="authorization" method="post">
         <div class="form-group">
             <label for="exampleInputEmail1">Email</label>
             <input type="email" name="email" class="form-control" id="email" placeholder="email">
@@ -34,7 +34,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR .'layout' . DIRECT
         <button id="registration" name="send" type="submit" class="btn btn-primary">авторизация</button>
     </form>
     <br>
-    <a class="nav-link" href="/registration">Регистрация</a>
+    <a class="link-primary" href="/registration">Регистрация</a>
 
 <?php
 require_once ($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . 'footer.php');

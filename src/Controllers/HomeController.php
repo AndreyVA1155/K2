@@ -2,32 +2,28 @@
 
 namespace App\Controllers;
 
+use App\Models\Post;
 use App\View\View;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
+//основной контроллер главной страницы
 class HomeController
 {
     public function homepage()
     {
-        return new View('homepage.homepage', ['title' => 'Главная страница']);
+        $limit = 10; //максимальное количество постов на странице
+        $posts = Post::where(null)
+            ->orderByDesc('data_create')
+            ->get();
+        $pages = 1; //количество странx иц для пагинации
+        if (!intdiv(count($posts), $limit)) {
+            $pages = $pages + 1;
+        }
+        return new View('homepage.homepage',
+            [
+                'title' => 'Главная страница',
+                'posts' => $posts,
+                'pages' => $pages
+            ]);
     }
-    //    const LIMIT = 10;
-    //    public function index()
-    //    {
-    //        $offset = intval($_REQUEST['offset'] ?? 0);
-    //        $blogs = Capsule::table('blog')->limit(self::LIMIT)->offset($offset)->get();
-    //        $count = Capsule::table('blog')->count();
-    //        //код для определения количества страниц ждя пагинации
-    //        if (($count % self::LIMIT) == 0) {
-    //            $pages = intdiv($count, self::LIMIT);
-    //        } else {
-    //            $pages = intdiv($count, self::LIMIT) + 1;
-    //        }
-
-//        return new View('blogs', [
-//            'title' => 'Главная страница',
-//           'blogs' => $blogs,
-//            'pages' => $pages
-//        ]);
-//    }
 }
