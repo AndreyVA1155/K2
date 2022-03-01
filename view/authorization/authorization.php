@@ -1,23 +1,11 @@
 <?php
-
-//$email = $_POST['email'] ?? '';
-//$password = $_POST['password'] ?? '';
-
-//if (isset($_POST['send'])) {
-///    $user = getUser($email);
-//    if ($user && $user['email'] == $email && password_verify($password, $user['password'])) {
-//        $_SESSION['user'] = $user;
-//        echo 'VSE OK' . '<br>';
-//    } else {
-//        echo 'логин или пароль введены неверно';
-//    }
-//} else {
-//    echo 'кнопка авторизация не нажата';
-//}
-
 require_once ($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR .'layout' . DIRECTORY_SEPARATOR . 'header.php');
-?>
 
+echo '<pre>';
+var_dump($user);
+echo '</pre>';
+echo '<br>';
+?>
 авторизация
 
     <br>
@@ -37,4 +25,5 @@ require_once ($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR .'layout' . DIRECT
     <a class="link-primary" href="/registration">Регистрация</a>
 
 <?php
+var_dump(isset($_POST['send']));
 require_once ($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . 'footer.php');
