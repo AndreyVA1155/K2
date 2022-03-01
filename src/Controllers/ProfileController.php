@@ -10,7 +10,8 @@ class ProfileController
 {
     public function profile()
     {
-        $users = User::where('name', 'ivan')
+        $id = $_SESSION['userId'];
+        $users = User::where('id', $id)
             ->get();
 
         return new View('profile.profile',

@@ -19,15 +19,21 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/">Главная страница</a>
                 </li>
+                <?php if (!isset($_SESSION['userId'])) { ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/authorization">Авторизация</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/registration">Регистарация</a>
                 </li>
+                <?php } else { ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/profile">Личный кабинет</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/outSession">Выйти с сайта</a>
+                </li>
+                <?php } ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin">Админка</a>
                 </li>
@@ -37,9 +43,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/staticPage">Правила сайта</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/test">Test</a>
-                </li>
+
             </ul>
         </div>
     </div>

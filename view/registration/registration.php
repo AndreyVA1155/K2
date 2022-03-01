@@ -2,28 +2,27 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . 'header.php');
 ?>
 
-    регистарция
     <br>
 
-    <form id="registration" action="/" name="registration" method="post">
+    <form id="registration" action="/registration" name="registration" method="post">
         <p>
             <span>*</span> поля обязательные для заполнения
         </p>
         <div class="form-group">
             <label for="name">введите имя</label>
-            <input type="text" required="" class="form-control" id="name" placeholder="имя">
+            <input type="text" name="name" required="" class="form-control" id="name" placeholder="* имя">
         </div>
         <div class="form-group">
             <label for="email">введите email</label>
-            <input type="email" required="" class="form-control" id="email" placeholder="email">
+            <input type="email" name="email" required="" class="form-control" id="email" placeholder="* email">
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">введите пароль</label>
-            <input type="password" required="" class="form-control" id="exampleInputPassword1" placeholder="пароль">
+            <input type="password" name="password1" required="" class="form-control" id="exampleInputPassword1" placeholder="* пароль">
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">введите пароль снова</label>
-            <input type="password" required="" class="form-control" id="exampleInputPassword2" placeholder="пароль">
+            <input type="password" name="password2" required="" class="form-control" id="exampleInputPassword2" placeholder="* пароль">
         </div>
         <input type="checkbox" name="check" id="check"  value="">
         <label for="check">согласен с правилами сайта</label>
@@ -32,4 +31,5 @@ require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECT
     </form>
 
 <?php
+var_dump($_POST);
 require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . 'footer.php');

@@ -8,7 +8,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECT
     <div class="card">
         фото пользователя
         <img class="card-img-top" src="" alt="аватар">
-        <form name="upload" action="/src/Controllers/EditProfileController.php" method="POST" ENCTYPE="multipart/form-data">
+        <form name="upload" action="/profile" method="POST" ENCTYPE="multipart/form-data">
             Выберите фото для загрузки:
             <input type="file" name="userfile">
             <div class="card-body">

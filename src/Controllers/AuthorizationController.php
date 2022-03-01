@@ -1,4 +1,4 @@
-<?php
+<?php   
 
 namespace App\Controllers;
 
@@ -15,6 +15,11 @@ class AuthorizationController
         if (isset($_POST['send'])) {
             $user = User::where('email', $email)
                 ->get();
+            foreach ($user as $user1) {
+                if ($user1['email'] == $email && password_verify($password, $user1['password'])) {
+                    $_SESSION['userId'] = $user1['id'];
+                }
+            }
         }
         return new View('authorization.authorization',
             [
