@@ -9,6 +9,11 @@ class AdminShowAllUserController
 {
     public function getAllUsers()
     {
-        return new View('admin.admin', ['title' => 'Все пользователи']);
+        $page = 'users';
+        return new View('admin.admin',
+            [
+                'title' => 'Все пользователи',
+                'page' => $page
+            ]);
     }
 }

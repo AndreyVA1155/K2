@@ -9,6 +9,11 @@ class AdminShowAllSubscriptionController
 {
     public function showAllSubscription()
     {
-        return new View('admin.admin', ['title' => 'Все подписки']);
+        $page = 'subscription';
+        return new View('admin.admin',
+            [
+                'title' => 'Все подписки',
+                'page' => $page
+            ]);
     }
 }

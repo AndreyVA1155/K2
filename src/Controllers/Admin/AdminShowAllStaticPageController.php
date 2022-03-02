@@ -9,6 +9,12 @@ use App\View\View;
 {
     public function getAllStaticPage()
     {
-        return new View('admin.admin', ['title' => 'Все статичные страницы']);
+        $page = 'staticPage';
+        return new View('admin.admin',
+            [
+                'title' => 'Все статичные страницы',
+                'page' => $page
+            ]);
+
     }
 }

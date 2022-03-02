@@ -9,6 +9,11 @@ class AdminController
 {
     public function admin()
     {
-        return new View('admin.admin', ['title' => 'Админка']);
+        $page = 'main';
+        return new View('admin.admin',
+            [
+                'title' => 'Админка',
+                'page' => $page
+            ]);
     }
 }

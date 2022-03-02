@@ -9,6 +9,11 @@ class AdminShowAllCommentsController
 {
     public function showAllComments()
     {
-        return new View('admin.admin', ['title' => 'Все комментраии']);
+        $page = 'comments';
+        return new View('admin.admin',
+            [
+                'title' => 'Все комментрарии',
+                'page' => $page
+            ]);
     }
 }

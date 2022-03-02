@@ -9,6 +9,11 @@ class AdminChangeParamSiteController
 {
     public function changeParamSite()
     {
-        return new View('admin.admin', ['title' => 'Изменение параметров сайта']);
+        $page = 'changeParamSite';
+        return new View('admin.admin',
+            [
+                'title' => 'Изменение параметров сайта',
+                'page' => $page
+            ]);
     }
 }

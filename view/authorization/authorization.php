@@ -1,13 +1,6 @@
 <?php
 require_once ($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR .'layout' . DIRECTORY_SEPARATOR . 'header.php');
-
-echo '<pre>';
-var_dump($user);
-echo '</pre>';
-echo '<br>';
-?>
-авторизация
-
+if (!isset($_SESSION['userId'])) { ?>
     <br>
     <form id="authorization" action="/authorization" name="authorization" method="post">
         <div class="form-group">
@@ -23,7 +16,10 @@ echo '<br>';
     </form>
     <br>
     <a class="link-primary" href="/registration">Регистрация</a>
+    <?php } else { ?>
 
+вы успешно вошли на сайт
+
+    <?php } ?>
 <?php
-var_dump(isset($_POST['send']));
 require_once ($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . 'footer.php');
