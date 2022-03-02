@@ -10,6 +10,7 @@ class ProfileController
 {
     public function profile()
     {
+        $profile = 'show';
         $id = $_SESSION['userId'];
         $users = User::where('id', $id)
             ->get();
@@ -17,7 +18,8 @@ class ProfileController
         return new View('profile.profile',
             [
                 'title' => 'Личный кабинет',
-                'users' => $users
+                'users' => $users,
+                'profile' => $profile
             ]);
     }
 }

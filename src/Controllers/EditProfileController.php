@@ -10,13 +10,24 @@ class EditProfileController
 {
     public function editProfile()
     {
-        $users = User::where('name', 'ivan')
+        $profile = 'edit';
+        $id = $_SESSION['userId'];
+        $users = User::where('id', $id)
             ->get();
+
+        //$user = User::updateOrCreate([
+            //'name' => $_POST['name'],
+            //'surname' => $_POST['surname'],
+            //'email' => $_POST['email'],
+            //'description' => $_POST['description']
+        //]);
+        //$user->save();
 
         return new View('profile.profile',
             [
-                'title' => 'Изменение личных данных',
-                'users' => $users
+                'title' => 'Личный кабинет',
+                'users' => $users,
+                'profile' => $profile
             ]);
     }
 }

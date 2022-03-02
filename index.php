@@ -47,22 +47,23 @@ $router->get('registration', [RegistrationController::class, 'registration']);
 $router->post('registration', [RegistrationController::class, 'registration']);
 $router->get('profile', [ProfileController::class, 'profile']);
 $router->post('profile', [ProfileController::class, 'profile']);
-$router->post('profile', [EditProfileController::class, 'editProfile']);
+$router->post('profile/editProfile', [EditProfileController::class, 'editProfile']);
 $router->get('', [ChangeStatusSubscribeController::class, 'changeStatusSubscribe']);
 
 $router->get('admin', [AdminController::class, 'admin']);
-$router->get('admin', [AdminShowAllUserController::class, 'getAllUsers']);
-$router->get('admin', [AdminShowAllPostController::class, 'getAllPost']);
-$router->get('admin', [AdminShowAllCommentsController::class, 'showAllComments']);
-$router->get('admin', [AdminShowAllSubscriptionController::class, 'showAllSubscription']);
-$router->get('admin', [AdminShowAllStaticPageController::class, 'getAllStaticPage']);
+$router->get('admin/allUsers', [AdminShowAllUserController::class, 'getAllUsers']);
+$router->get('admin/allPosts', [AdminShowAllPostController::class, 'getAllPost']);
+$router->get('admin/allComments', [AdminShowAllCommentsController::class, 'showAllComments']);
+$router->get('admin/allSubscription', [AdminShowAllSubscriptionController::class, 'showAllSubscription']);
+$router->get('admin/allStaticPage', [AdminShowAllStaticPageController::class, 'getAllStaticPage']);
+$router->get('admin/changeParamSite', [AdminChangeParamSiteController::class, 'changeParamSite']);
 
 $router->post('admin', [AdminChangeUserController::class, 'changesUser']);
 $router->post('admin', [AdminChangePostController::class, 'changePost']);
 $router->post('admin', [AdminChangeCommentsController::class, 'ChangeComment']);
 $router->post('admin', [AdminChangeSubscriptionController::class, 'changeSubscription']);
 $router->post('admin', [AdminChangeStaticPageController::class, 'changeStaticPage']);
-$router->post('admin', [AdminChangeParamSiteController::class, 'changeParamSite']);
+$router->post('admin/changeParamSite', [AdminChangeParamSiteController::class, 'changeParamSite']);
 
 
 $router->get('staticPage', [StaticPageController::class, 'staticPage']);
