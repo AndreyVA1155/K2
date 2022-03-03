@@ -10,7 +10,10 @@ class OutSessionController
     {
         if (isset($_SESSION)) {
             session_destroy();
+<<<<<<< HEAD
             header('Location: /');
+=======
+>>>>>>> origin/main
         }
 
         return new View('outSession.outSession',
