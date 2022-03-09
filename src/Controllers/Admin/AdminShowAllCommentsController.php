@@ -10,8 +10,13 @@ class AdminShowAllCommentsController
 {
     public function showAllComments()
     {
-        $comments = Comment::where(null)
-            ->get();
+        $comments = Comment::all();
+        foreach ($comments as $comment) {
+            $comment['name'] = $comment->user->name;
+            $comment['surname'] = $comment->user->surname;
+            $comment['head'] = $comment->post->head;
+        }
+
         $page = 'comments';
         return new View('admin.admin',
             [

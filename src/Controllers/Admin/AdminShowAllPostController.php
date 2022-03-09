@@ -11,8 +11,7 @@ class AdminShowAllPostController
     public function getAllPost()
     {
         $limit = 10; //максимальное количество постов на странице
-        $posts = Post::where(null)
-            ->get();
+        $posts = Post::all();
 
         if (intdiv(count($posts), $limit) == 0) {
             $pages = intdiv(count($posts), $limit);
@@ -28,5 +27,17 @@ class AdminShowAllPostController
                 'page' => $page
             ]);
 
+    }
+
+    public function readPost($id)
+    {
+        $post = Post::where('id', $id)->get();
+        $page = 'post';
+        return new View('admin.post',
+            [
+                'title' => 'Пост',
+                'post' => $post,
+                'page' => $page
+            ]);
     }
 }

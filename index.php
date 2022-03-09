@@ -40,6 +40,7 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . 'bootstrap.php';
 $router = new Router();
 
 $router->get('', [HomeController::class, 'homepage']);
+$router->get('post/*', [HomeController::class, 'showPost']);
 $router->get('outSession', [OutSessionController::class, 'outSession']);
 $router->get('authorization', [AuthorizationController::class, 'authorization']);
 $router->post('authorization', [AuthorizationController::class, 'authorization']);
@@ -57,10 +58,11 @@ $router->get('admin/allComments', [AdminShowAllCommentsController::class, 'showA
 $router->get('admin/allSubscription', [AdminShowAllSubscriptionController::class, 'showAllSubscription']);
 $router->get('admin/allStaticPage', [AdminShowAllStaticPageController::class, 'getAllStaticPage']);
 $router->get('admin/changeParamSite', [AdminChangeParamSiteController::class, 'changeParamSite']);
+$router->get('admin/post/*', [AdminShowAllPostController::class, 'readPost']);
 
 $router->post('admin', [AdminChangeUserController::class, 'changesUser']);
-$router->post('admin', [AdminChangePostController::class, 'changePost']);
-$router->post('admin', [AdminChangeCommentsController::class, 'ChangeComment']);
+$router->post('admin/post/*', [AdminChangePostController::class, 'changePost']);
+$router->post('admin/comment/*', [AdminChangeCommentsController::class, 'ChangeComment']);
 $router->post('admin', [AdminChangeSubscriptionController::class, 'changeSubscription']);
 $router->post('admin', [AdminChangeStaticPageController::class, 'changeStaticPage']);
 $router->post('admin/changeParamSite', [AdminChangeParamSiteController::class, 'changeParamSite']);

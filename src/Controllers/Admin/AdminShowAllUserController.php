@@ -10,9 +10,11 @@ class AdminShowAllUserController
 {
     public function getAllUsers()
     {
-        $limit = 10; //максимальное количество пользователь на странице
-        $users = User::where(null)
-            ->get();
+        $limit = 10; //максимальное количество пользователей на странице
+        $users = User::all();
+        foreach ($users as $user) {
+            $user['status'] = $user->status->status;
+        }
         if (intdiv(count($users), $limit) == 0) {
             $pages = intdiv(count($users), $limit);
         } else {

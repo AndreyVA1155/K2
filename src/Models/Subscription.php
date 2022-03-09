@@ -8,17 +8,17 @@ use Illuminate\Database\Eloquent\Builder;
  * @mixin Builder
  */
 
-class Comment extends Model
+class Subscription extends Model
 {
-    protected $table = 'comments';
+    protected $table = 'subscription';
 
     public function user()
     {
-        return $this->hasOne(User::class, 'id', 'user_id');
+        return $this->hasOne(User::class, 'id', 'id_user');
     }
 
     public function post()
     {
-        return $this->hasOne(Post::class, 'id', 'post_id');
+        return $this->hasOne(Post::class, 'id', 'id_post');
     }
 }

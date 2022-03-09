@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Models\Post;
 use App\View\View;
-use Illuminate\Database\Capsule\Manager as Capsule;
 
 //основной контроллер главной страницы
 class HomeController
@@ -15,7 +14,7 @@ class HomeController
         $posts = Post::where(null)
             ->orderByDesc('data_create')
             ->get();
-
+        $pages = 'posts';
         if (intdiv(count($posts), $limit) == 0) {
             $pages = intdiv(count($posts), $limit);
         } else {
@@ -28,4 +27,16 @@ class HomeController
                 'pages' => $pages
             ]);
     }
+
+
+    public function showPost($id)
+    {
+        $post = Post::where('id', $id)->get();
+        return new View('homepage.post',
+            [
+                'title' => 'Пост',
+                'post' => $post
+            ]);
+    }
+
 }

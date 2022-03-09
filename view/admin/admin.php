@@ -1,4 +1,7 @@
 <?php
+/**
+ * @var \App\Models\Post[]
+ */
 require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . 'header.php');
 ?>
 <?php if ($page == 'main') { ?>
@@ -45,15 +48,27 @@ require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECT
                     описание пользователя - <?= $user['description'] ?>
                 </div>
                 <div class="card-body">
-                    статус пользователя - <?= $user['status_user'] ?>
+                    статус пользователя - <?= $user['status'] ?>
                 </div>
             </div>
         </div>
     <?php endforeach ?>
 <?php } elseif ($page == 'subscription') { ?>
-    subscription
+    <?php foreach ($subscriptions as $subscription): ?>
+        <div class="card">
+            <div class="card-body">
+                <div class="card-body">
+                    пользователь оставивший коментарий - <strong><?= $subscription['name'] . ' ' .  $subscription['surname']?></strong>
+                </div>
+                <div class="card-body">
+                    название поста, где оставлен коментарий - <strong><?= $subscription['head'] ?></strong>
+                </div>
+            </div>
+        </div>
+    <?php endforeach ?>
 <?php } elseif ($page == 'comments') { ?>
     <?php foreach ($Comments as $Comment): ?>
+        <form action="/admin/comment/<?= $Comment['id'] ?>" method="POST">
         <div class="card">
             <div class="card-body">
                 <div class="card-body">
@@ -63,18 +78,20 @@ require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECT
                     статус комментария - <?= $Comment['status'] ?>
                 </div>
                 <div class="card-body">
-                    имя пользователя - <?= $Comment['user_id'] ?>
+                    имя пользователя - <?= $Comment['name'] . ' ' .  $Comment['surname']?>
                 </div>
                 <div class="card-body">
-                    название поста - <?= $Comment['post_id'] ?>
+                    название поста - <?= $Comment['head'] ?>
                 </div>
+                <input type="submit" name="changeComment" value="изменить комментарий">
             </div>
         </div>
+        </form>
     <?php endforeach ?>
 <?php } elseif ($page == 'posts') { ?>
     <?php foreach ($posts as $post): ?>
         <div class="card">
-            <img class="card-img-top" src="<?= $post['img_path'] ?>" alt="<?= $post['img'] ?>">
+            <img class="card-img-top" src="<?= '/' . $post['img_path'] ?>" alt="<?= $post['img'] ?>">
             <div class="card-body">
                 <h4 class="card-title">название поста - <?= $post['head'] ?></h4>
                 <div class="container">
@@ -91,14 +108,24 @@ require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECT
                         </div>
                     </div>
                 </div>
-                <a href="???" class="btn btn-primary">читать пост</a>
+                <a href="/admin/post/<?=$post['id']?>" class="btn btn-primary">читать пост</a>
             </div>
         </div>
     <?php endforeach ?>
 <?php } elseif ($page == 'staticPage') { ?>
     staticPage
 <?php } elseif ($page == 'changeParamSite') { ?>
-    changeParamSite
+    <?php foreach ($limit as $item): ?>
+    <form action="/admin/changeParamSite" method="POST">
+        <div class="card">
+            <p class="card-text">
+                предельное количество старниц - <input type="text" name="limit" value="<?= $item['limit'] ?>"
+            </p>
+        </div>
+        <br>
+        <input type="submit" name="upload" value="Обновить информацию">
+    </form>
+    <?php endforeach ?>
 <?php } ?>
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . 'footer.php');

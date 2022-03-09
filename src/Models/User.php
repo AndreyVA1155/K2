@@ -11,4 +11,9 @@ use Illuminate\Database\Eloquent\Builder;
 class User extends Model
 {
     protected $table = 'users';
+
+    public function status()
+    {
+        return $this->hasOne(Status::class, 'id', 'id');
+    }
 }
