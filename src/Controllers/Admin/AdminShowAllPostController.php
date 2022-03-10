@@ -9,12 +9,6 @@ class AdminShowAllPostController
 {
     public function getAllPost()
     {
-        $page = 'posts';
-        return new View('admin.admin',
-            [
-                'title' => 'Все посты',
-                'page' => $page
-            ]);
-
+        return new View('admin.admin', ['title' => 'Все посты']);
     }
 }

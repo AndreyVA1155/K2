@@ -15,9 +15,11 @@ class HomeController
         $posts = Post::where(null)
             ->orderByDesc('data_create')
             ->get();
-        $pages = 1; //количество странx иц для пагинации
-        if (!intdiv(count($posts), $limit)) {
-            $pages = $pages + 1;
+
+        if (intdiv(count($posts), $limit) == 0) {
+            $pages = intdiv(count($posts), $limit);
+        } else {
+            $pages = intdiv(count($posts), $limit) + 1;
         }
         return new View('homepage.homepage',
             [
