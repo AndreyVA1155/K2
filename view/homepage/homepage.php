@@ -23,7 +23,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECT
                     </div>
                 </div>
             </div>
-            <a href="???" class="btn btn-primary">читать пост</a>
+            <a href="/post/<?= $post['id'] ?>" class="btn btn-primary">читать пост</a>
         </div>
     </div>
 <?php endforeach ?>

@@ -10,14 +10,19 @@ class ProfileController
 {
     public function profile()
     {
+        $profile = 'show';
         $id = $_SESSION['userId'];
-        $users = User::where('id', $id)
-            ->get();
+        $user = User::where('id', $id)
+            ->first();
+        $user['status'] = $user->status->name;
 
         return new View('profile.profile',
             [
                 'title' => 'Личный кабинет',
-                'users' => $users
+                'user' => $user,
+                'profile' => $profile
             ]);
     }
+
+
 }

@@ -14,11 +14,11 @@ class Subscription extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne(User::class, 'id', 'id_user');
     }
 
     public function post()
     {
-        return $this->hasOne(Post::class);
+        return $this->hasOne(Post::class, 'id', 'id_post');
     }
 }
