@@ -7,7 +7,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECT
 <?php if($profile == 'edit') { ?>
         <div class="card">
             фото пользователя
-            <img class="card-img-top" src="" alt="аватар">
+            <img class="card-img-top" src="/<?= $user['avatar_path'] ?>" alt="<?= $user['avatar'] ?>">
             <form name="upload" action="/profile/editProfile" method="POST" ENCTYPE="multipart/form-data">
                 Выберите фото для загрузки:
                 <input type="file" name="userfile">
@@ -31,10 +31,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECT
 <?php } elseif($profile == 'show') { ?>
         <div class="card">
             фото пользователя
-            <img class="card-img-top" src="" alt="аватар">
-            <form name="upload" action="/profile/editProfile" method="POST" ENCTYPE="multipart/form-data">
-                Выберите фото для загрузки:
-                <input type="file" name="userfile">
+            <img class="card-img-top" src="<?= $user['avatar_path'] ?>" alt="<?= $user['avatar'] ?>">
+            <form name="uploadFoto" action="/profile/editProfile" method="POST" ENCTYPE="multipart/form-data">
                 <div class="card-body">
                     <p class="card-text">
                         <?= $user['name'] ?> - имя
@@ -49,12 +47,13 @@ require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECT
                         <?= $user['description'] ?> - о себе
                     </p>
                     <p class="card-text">
-                        <?= $user['status'] ?> - статус пользователя
+                        <?= $user->status->name ?> - статус пользователя
                     </p>    
                 </div>
                 <input type="submit" name="upload" value="Обновить информацию">
             </form>
         </div>
 <?php } ?>
+
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . 'footer.php');

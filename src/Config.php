@@ -1,8 +1,13 @@
 <?php
 
 namespace App;
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/helpers.php';
 
+/**
+ * Class Config
+ * @package App
+ */
 class Config
 {
     private static $instance = null;

@@ -4,11 +4,17 @@ namespace App\Controllers\Admin;
 
 use App\View\View;
 
-//контроллер для изменения статичной страницы
+/**
+ * Class AdminChangeStaticPageController
+ * @package App\Controllers\Admin
+ */
 class AdminChangeStaticPageController
 {
     public function changeStaticPage()
     {
-        return new View('admin.admin', ['title' => 'Изменение статичной страницы']);
+        return new View('admin.admin',
+            [
+                'title' => 'Изменение статичной страницы'
+            ]);
     }
 }

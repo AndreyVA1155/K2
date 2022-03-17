@@ -5,15 +5,16 @@ namespace App\Controllers\Admin;
 use App\View\View;
 use App\Models\ParamSite;
 
-//контроллер для изменения параметров сайта
+/**
+ * Class AdminChangeParamSiteController
+ * @package App\Controllers\Admin
+ */
 class AdminChangeParamSiteController
 {
     public function changeParamSite()
     {
-        $id = 1;
-        $page = 'changeParamSite';
-        $limit = ParamSite::where('id', 1)->get();
-        if (isset($_POST['upload'])) {
+        $limit = ParamSite::where('id', 1)->first();
+        if (isset($_POST['limit'])) {
             $param = ParamSite::where('id', 1)->first();
             $param->limit = $_POST['limit'];
             $param->save();
@@ -22,7 +23,7 @@ class AdminChangeParamSiteController
         return new View('admin.admin',
             [
                 'title' => 'Изменение параметров сайта',
-                'page' => $page,
+                'page' => 'changeParamSite',
                 'limit' => $limit
             ]);
     }

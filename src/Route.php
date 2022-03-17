@@ -1,9 +1,13 @@
 <?php
+
 namespace App;
 
-use App\Models\Post;
 use Closure;
 
+/**
+ * Class Route
+ * @package App
+ */
 class Route
 {
     private string $method;
@@ -44,14 +48,10 @@ class Route
     {
         if (!empty($uri)) {
             $array = explode('/', $uri);
-            if (preg_match('/post/', $uri,$matches)) {
+            $id = $array[array_key_last($array)];
                 if (preg_match('([0-9]+)', $uri, $match)) {
-                    $id = $match[0];
-                    Post::where('id', $id);
-                } else {
-                    Post::all();
+                    $_POST['id'] = $match[0];
                 }
-            }
             return call_user_func_array($this->callback, $array);
         } else {
             return call_user_func_array($this->callback, []);

@@ -1,6 +1,7 @@
 <?php
-require_once ($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR .'layout' . DIRECTORY_SEPARATOR . 'header.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . 'header.php');
 if (!isset($_SESSION['userId'])) { ?>
+
     <br>
     <form id="authorization" action="/authorization" name="authorization" method="post">
         <div class="form-group">
@@ -16,10 +17,11 @@ if (!isset($_SESSION['userId'])) { ?>
     </form>
     <br>
     <a class="link-primary" href="/registration">Регистрация</a>
-    <?php } else { ?>
 
-вы успешно вошли на сайт
+<?php } else { ?>
 
-    <?php } ?>
+    вы успешно вошли на сайт
+
+<?php } ?>
 <?php
-require_once ($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . 'footer.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . 'footer.php');

@@ -2,27 +2,26 @@
 
 namespace App\Controllers;
 
-use App\Models\User;
 use App\View\View;
+use App\Models\User;
 
-//контроллер для вывод профиля пользователя
-class ProfileController
+/**
+ * Class ProfileController
+ * @package App\Controllers
+ */
+class ProfileController extends AbstractController
 {
     public function profile()
     {
-        $profile = 'show';
         $id = $_SESSION['userId'];
-        $user = User::where('id', $id)
-            ->first();
-        $user['status'] = $user->status->name;
-
+        $id = $_SESSION['userId'];
+        $user = User::where('id', $id)->first();
+        var_dump($user->name);
         return new View('profile.profile',
             [
                 'title' => 'Личный кабинет',
                 'user' => $user,
-                'profile' => $profile
+                'profile' => 'show'
             ]);
     }
-
-
 }

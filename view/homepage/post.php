@@ -2,28 +2,33 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . 'header.php');
 ?>
 
-<?php foreach ($post as $post1): ?>
     <div class="card">
-        <img  class="card-img-top" src="<?= $post1['img_path'] ?>" alt="<?= $post1['img'] ?>">
+        <img class="card-img-top" src="\<?= $post['img_path'] ?>" alt="<?= $post['img'] ?>">
         <div class="card-body">
-            <h4 class="card-title">название поста - <?= $post1['head'] ?></h4>
+            <h4 class="card-title">название поста - <?= $post['head'] ?></h4>
             <div class="container">
                 <div class="row">
                     <div class="col-sm">
                         <p class="card-text">
-                            краткое содержание поста - <?= $post1['topic'] ?>
+                            краткое содержание поста - <?= $post['topic'] ?>
                         </p>
                     </div>
                     <div class="col-sm text-align: right">
                         <p class="card-text">
-                            <?= $post1['data_create'] ?>
+                            <?= $post['data_create'] ?>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-<?php endforeach ?>
+    <br>
+    <form action="/changeStatusSubscribe" method="post">
+        <?= $viewSubsription ?>
+        <div><?= $textSubscription ?></div>
+        <input type="hidden" name="status" value="<?= $buttonName ?>">
+        <button type="submit" name="subsripton" class="<?= $buttonSubsription ?>"><?= $buttonName ?></button>
+    </form>
 
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . 'footer.php');

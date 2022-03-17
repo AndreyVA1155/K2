@@ -1,11 +1,12 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 
 /**
- * @mixin Builder
+ * Class Post
+ * @package App\Models
  */
 class Post extends Model
 {

@@ -4,6 +4,10 @@ namespace App;
 
 use App\Exception\NotFoundException;
 
+/**
+ * Class Router
+ * @package App
+ */
 class Router
 {
     private array $routes = [];

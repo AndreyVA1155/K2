@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use App\Exception\ApplicationException;
@@ -6,6 +7,10 @@ use App\View\Renderable;
 use App\View\View;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
+/**
+ * Class Application
+ * @package App
+ */
 class Application
 {
     private Router $router;

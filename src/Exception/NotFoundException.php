@@ -1,9 +1,14 @@
 <?php
+
 namespace App\Exception;
 
 use App\View\Renderable;
 use App\View\View;
 
+/**
+ * Class NotFoundException
+ * @package App\Exception
+ */
 class NotFoundException extends HttpException implements Renderable
 {
 

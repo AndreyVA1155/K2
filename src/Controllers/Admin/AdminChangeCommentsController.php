@@ -3,24 +3,44 @@
 namespace App\Controllers\Admin;
 
 use App\Models\Comment;
+use App\Models\Post;
+use App\Models\User;
 use App\View\View;
 
-//контроллер для изменений комментария
+/**
+ * Class AdminChangeCommentsController
+ * @package App\Controllers\Admin
+ */
 class AdminChangeCommentsController
 {
-    public function ChangeComment($id)
+    public function сhangeComment()
     {
-        $comment = Comment::find($id);
-        foreach ($comment as $comment1) {
-            $comment1['name'] = $comment1->user->name;
-            $comment1['surname'] = $comment1->user->surname;
-            $comment1['head'] = $comment1->post->head;
+        $id = $_POST['id'];
+        $comment = Comment::where('id', $id)->first();
+        $statusComment = ['на модерации', 'опубликован'];
+        $users = User::all();
+        $posts = Post::all();
+
+        if (isset($_POST['changeComment'])) {
+            $id = $_POST['id'];
+            $comment = Comment::where('id', $id)->first();
+            $comment->text = $_POST['text'];
+            $comment->status = $_POST['statusComment'];
+            $user = explode(' ', $_POST['name']);
+            $comment->user->name = $user[0];
+            $comment->user->surname = $user[1];
+            $comment->post->head = $_POST['headPost'];
+            $comment->save();
         }
+
         return new View(
             'admin.comment',
             [
                 'title' => 'Изменение комментария',
-                'Comment' => $comment
+                'comment' => $comment,
+                'statusComment' => $statusComment,
+                'users' => $users,
+                'posts' => $posts
             ]);
     }
 }

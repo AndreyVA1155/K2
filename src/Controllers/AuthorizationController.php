@@ -5,13 +5,17 @@ namespace App\Controllers;
 use App\View\View;
 use App\Models\User;
 
-//контроллер для авторизации
+/**
+ * Class AuthorizationController
+ * @package App\Controllers
+ */
 class AuthorizationController
 {
-    public function authorization($user)
+    public function authorization()
     {
         $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
+        $user = '';
         if (isset($_POST['send'])) {
             $user = User::where('email', $email)
                 ->get();
@@ -28,4 +32,3 @@ class AuthorizationController
             ]);
     }
 }
-

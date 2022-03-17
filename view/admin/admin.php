@@ -1,7 +1,4 @@
 <?php
-/**
- * @var \App\Models\Post[]
- */
 require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . 'header.php');
 ?>
 <?php if ($page == 'main') { ?>
@@ -33,25 +30,28 @@ require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECT
     </nav>
 <?php } elseif ($page == 'users') { ?>
     <?php foreach ($users as $user): ?>
-        <div class="card">
-            <div class="card-body">
+        <form action="/admin/user/<?= $user['id'] ?>" method="POST">
+            <div class="card">
                 <div class="card-body">
-                    имя пользователя - <?= $user['name'] ?>
-                </div>
-                <div class="card-body">
-                    фамилия пользователя - <?= $user['surname'] ?>
-                </div>
-                <div class="card-body">
-                    email пользователя - <?= $user['email'] ?>
-                </div>
-                <div class="card-body">
-                    описание пользователя - <?= $user['description'] ?>
-                </div>
-                <div class="card-body">
-                    статус пользователя - <?= $user['status'] ?>
+                    <div class="card-body">
+                        имя пользователя - <?= $user['name'] ?>
+                    </div>
+                    <div class="card-body">
+                        фамилия пользователя - <?= $user['surname'] ?>
+                    </div>
+                    <div class="card-body">
+                        email пользователя - <?= $user['email'] ?>
+                    </div>
+                    <div class="card-body">
+                        описание пользователя - <?= $user['description'] ?>
+                    </div>
+                    <div class="card-body">
+                        статус пользователя - <?= $user['status'] ?>
+                    </div>
+                    <input type="submit" name="changeUserAll" value="изменить пользователя">
                 </div>
             </div>
-        </div>
+        </form>
     <?php endforeach ?>
 <?php } elseif ($page == 'subscription') { ?>
     <?php foreach ($subscriptions as $subscription): ?>
@@ -73,23 +73,23 @@ require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECT
         </form>
     <?php endforeach ?>
 <?php } elseif ($page == 'comments') { ?>
-    <?php foreach ($Comments as $Comment): ?>
-        <form action="/admin/comment/<?= $Comment['id'] ?>" method="POST">
+    <?php foreach ($comments as $comment): ?>
+        <form action="/admin/comment/<?= $comment['id'] ?>" method="POST">
             <div class="card">
                 <div class="card-body">
                     <div class="card-body">
-                        текст комментария - <?= $Comment['text'] ?>
+                        текст комментария - <?= $comment['text'] ?>
                     </div>
                     <div class="card-body">
-                        статус комментария - <?= $Comment['status'] ?>
+                        статус комментария - <?= $comment['status'] ?>
                     </div>
                     <div class="card-body">
-                        имя пользователя - <?= $Comment['name'] . ' ' . $Comment['surname'] ?>
+                        имя пользователя - <?= $comment->user->name . ' ' . $comment->user->surname ?>
                     </div>
                     <div class="card-body">
-                        название поста, где написан комментарий - <?= $Comment['head'] ?>
+                        название поста, где написан комментарий - <?= $comment->post->head ?>
                     </div>
-                    <input type="submit" name="changeComment" value="изменить комментарий">
+                    <input type="submit" name="changeCommentAll" value="изменить комментарий">
                 </div>
             </div>
         </form>
@@ -121,17 +121,15 @@ require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECT
 <?php } elseif ($page == 'staticPage') { ?>
     staticPage
 <?php } elseif ($page == 'changeParamSite') { ?>
-    <?php foreach ($limit as $item): ?>
         <form action="/admin/changeParamSite" method="POST">
             <div class="card">
                 <p class="card-text">
-                    предельное количество старниц - <input type="text" name="limit" value="<?= $item['limit'] ?>"
+                    предельное количество старниц - <input type="text" name="limit" value="<?= $limit['limit'] ?>"
                 </p>
             </div>
             <br>
             <input type="submit" name="upload" value="Обновить информацию">
         </form>
-    <?php endforeach ?>
 <?php } ?>
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . 'footer.php');

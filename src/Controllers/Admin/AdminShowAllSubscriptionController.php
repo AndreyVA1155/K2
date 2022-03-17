@@ -5,28 +5,27 @@ namespace App\Controllers\Admin;
 use App\View\View;
 use App\Models\Subscription;
 
-//контроллер для показа всех подписок
+/**
+ * Class AdminShowAllSubscriptionController
+ * @package App\Controllers\Admin
+ */
 class AdminShowAllSubscriptionController
 {
     public function showAllSubscription()
     {
+        $limit = 10; //максимальное количество подписок на странице
         $subscriptions = Subscription::all();
-        foreach ($subscriptions as $subscription) {
-            if (isset($subscription->user->name)) {
-                $subscription['name'] = $subscription->user->name;
-                $subscription['surname'] = $subscription->user->surname;
-                $subscription['email'] = $subscription->user->email;
-            } else {
-                $subscription['email'] = $subscription->email;
-            }
+        if (intdiv(count($subscriptions), $limit) == 0) {
+            $countPages = intdiv(count($subscriptions), $limit);
+        } else {
+            $countPages = intdiv(count($subscriptions), $limit) + 1;
         }
-        $page = 'subscription';
 
         return new View('admin.admin',
             [
                 'title' => 'Все подписки',
                 'subscriptions' => $subscriptions,
-                'page' => $page
+                'page' => 'subscription'
             ]);
     }
 }

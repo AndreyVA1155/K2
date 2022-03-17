@@ -8,7 +8,6 @@ use App\Controllers\RegistrationController;
 use App\Controllers\ProfileController;
 use App\Controllers\EditProfileController;
 use App\Controllers\OutSessionController;
-
 use App\Controllers\ChangeStatusSubscribeController;
 
 use App\Controllers\Admin\AdminController;
@@ -33,7 +32,7 @@ use App\Controllers\TestController;
 
 session_start();
 error_reporting(E_ALL);
-ini_set('display_errors',true);
+ini_set('display_errors', true);
 
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
@@ -50,6 +49,7 @@ $router->get('profile', [ProfileController::class, 'profile']);
 $router->post('profile', [ProfileController::class, 'profile']);
 $router->post('profile/editProfile', [EditProfileController::class, 'editProfile']);
 $router->get('', [ChangeStatusSubscribeController::class, 'changeStatusSubscribe']);
+$router->post('changeStatusSubscribe', [ChangeStatusSubscribeController::class, 'changeStatusSubscribe']);
 
 $router->get('admin', [AdminController::class, 'admin']);
 $router->get('admin/allUsers', [AdminShowAllUserController::class, 'getAllUsers']);
@@ -60,9 +60,9 @@ $router->get('admin/allStaticPage', [AdminShowAllStaticPageController::class, 'g
 $router->get('admin/changeParamSite', [AdminChangeParamSiteController::class, 'changeParamSite']);
 $router->get('admin/post/*', [AdminShowAllPostController::class, 'readPost']);
 
-$router->post('admin', [AdminChangeUserController::class, 'changesUser']);
+$router->post('admin/user/*', [AdminChangeUserController::class, 'changesUser']);
 $router->post('admin/post/*', [AdminChangePostController::class, 'changePost']);
-$router->post('admin/comment/*', [AdminChangeCommentsController::class, 'ChangeComment']);
+$router->post('admin/comment/*', [AdminChangeCommentsController::class, 'сhangeComment']);
 $router->post('admin/subscription/*', [AdminChangeSubscriptionController::class, 'changeSubscription']);
 $router->post('admin', [AdminChangeSubscriptionController::class, 'changeSubscription']);
 $router->post('admin', [AdminChangeStaticPageController::class, 'changeStaticPage']);

@@ -4,11 +4,18 @@ namespace App\Controllers;
 
 use App\View\View;
 
-//контроллер для вывода статичныъ страниц
+/**
+ * Class StaticPageController
+ * @package App\Controllers
+ */
 class StaticPageController
 {
     public function staticPage()
     {
-        return new View('staticPage.staticPage', ['title' => 'Статичная страница']);
+        return new View('staticPage.staticPage',
+            [
+                'title' => 'Статичная страница',
+                'page' => 'staticPage'
+            ]);
     }
 }

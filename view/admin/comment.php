@@ -1,30 +1,54 @@
 <?php
-/**
- * @var \App\Models\Post[]
- */
 require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . 'header.php');
 ?>
-    comment
-<?php foreach ($Comment as $Comment1): ?>
-    <form action="/admin/changeCommеnt/<?= $Comment1['id'] ?>" method="POST">
+
+    <form action="/admin/comment/<?= $comment['id'] ?>" method="post">
         <div class="card">
-            <div class="card-body">
-                <div class="card-body">
-                    текст комментария - <?= $Comment1['text'] ?>
-                </div>
-                <div class="card-body">
-                    статус комментария - <?= $Comment1['status'] ?>
-                </div>
-                <div class="card-body">
-                    имя пользователя - <?= $Comment1['name'] . ' ' .  $Comment1['surname']?>
-                </div>
-                <div class="card-body">
-                    название поста - <?= $Comment1['head'] ?>
-                </div>
+            <div>
+                текст комментария
+                <br>
+                <input type="text" name="text" value="<?= $comment['text'] ?>"
             </div>
+            <div>
+                <br>
+                статус комментария
+                <br>
+                <select name="statusComment">
+                    <?php
+                    foreach ($statusComment as $value) {
+                        echo '<option value="' . $value . '" ' . (isset($comment['status']) && $comment['status'] == $value ? ' selected ' : '') . '>' . $value . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+            <div>
+                <br>
+                кто оставил комментарий
+                <br>
+                <select name="name">
+                    <?php
+                    foreach ($users as $value) {
+                        echo '<option value="' . $value['name'] . ' ' . $value['surname'] . '" ' . (isset($comment->user->name) && $comment->user->name == $value['name'] ? ' selected ' : '') . '>' . $comment->user->name . ' ' . $value['name'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+            <div>
+                <br>
+                название поста
+                <br>
+                <select name="headPost">
+                    <?php
+                    foreach ($posts as $value) {
+                        echo '<option value="' . $value['head'] . '" ' . (isset($comment->post->head) && $comment->post->head == $value['head'] ? ' selected ' : '') . '>' . $value['head'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+            <br><br><br>
+            <input type="submit" name="changeComment" value="применить изменение комментария">
         </div>
     </form>
-<?php endforeach ?>
 
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . 'footer.php');

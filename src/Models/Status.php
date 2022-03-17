@@ -1,13 +1,13 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 
 /**
- * @mixin Builder
+ * Class Status
+ * @package App\Models
  */
-
 class Status extends Model
 {
     protected $table = 'status_user';

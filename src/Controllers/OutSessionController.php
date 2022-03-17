@@ -4,6 +4,10 @@ namespace App\Controllers;
 
 use App\View\View;
 
+/**
+ * Class OutSessionController
+ * @package App\Controllers
+ */
 class OutSessionController
 {
     public function outSession()

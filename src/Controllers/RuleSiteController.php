@@ -4,11 +4,19 @@ namespace App\Controllers;
 
 use App\View\View;
 
-//контроллер с правилами сайта
+/**
+ * Class RuleSiteController
+ * @package App\Controllers
+ */
 class RuleSiteController
 {
     public function ruleSite()
     {
-        return new View('staticPage.staticPage', ['title' => 'Правила сайта']);
+        $page ='ruleSite';
+        return new View('staticPage.staticPage',
+            [
+                'title' => 'Правила сайта',
+                'page' => $page
+            ]);
     }
 }

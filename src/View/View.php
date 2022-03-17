@@ -1,6 +1,11 @@
 <?php
+
 namespace App\View;
 
+/**
+ * Class View
+ * @package App\View
+ */
 class View implements Renderable
 {
 
