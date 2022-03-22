@@ -9,6 +9,7 @@ use App\Controllers\ProfileController;
 use App\Controllers\EditProfileController;
 use App\Controllers\OutSessionController;
 use App\Controllers\ChangeStatusSubscribeController;
+use App\Controllers\AddCommentController;
 
 use App\Controllers\Admin\AdminController;
 use App\Controllers\Admin\AdminShowAllUserController;
@@ -39,6 +40,7 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . 'bootstrap.php';
 $router = new Router();
 
 $router->get('', [HomeController::class, 'homepage']);
+$router->post('', [HomeController::class, 'homepage']);
 $router->get('post/*', [HomeController::class, 'showPost']);
 $router->get('outSession', [OutSessionController::class, 'outSession']);
 $router->get('authorization', [AuthorizationController::class, 'authorization']);
@@ -47,9 +49,10 @@ $router->get('registration', [RegistrationController::class, 'registration']);
 $router->post('registration', [RegistrationController::class, 'registration']);
 $router->get('profile', [ProfileController::class, 'profile']);
 $router->post('profile', [ProfileController::class, 'profile']);
-$router->post('profile/editProfile', [EditProfileController::class, 'editProfile']);
+$router->post('profile/editProfile', [ProfileController::class, 'editProfile']);
 $router->get('', [ChangeStatusSubscribeController::class, 'changeStatusSubscribe']);
 $router->post('changeStatusSubscribe', [ChangeStatusSubscribeController::class, 'changeStatusSubscribe']);
+$router->post('addComment', [AddCommentController::class, 'addComment']);
 
 $router->get('admin', [AdminController::class, 'admin']);
 $router->get('admin/allUsers', [AdminShowAllUserController::class, 'getAllUsers']);

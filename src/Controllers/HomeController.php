@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Comment;
 use App\Models\Subscription;
 use App\Models\Post;
 use App\Models\User;
@@ -20,22 +21,25 @@ class HomeController
         if (isset($_SESSION['userId'])) {
             $emailUser = User::where('id', $idUser)->first();
             $email = $emailUser->email;
-            $statusSubsription = Subscription::where('email', $email)
-                ->first();
+            $statusSubsription = Subscription::where('email', $email)->first();
         }
 
         $limit = ParamSite::where('id', 1)->first(); //максимальное количество постов на странице
         $posts = Post::where(null)
             ->orderByDesc('data_create')
             ->get();
-
-        if (intdiv(count($posts), $limit['limit']) == 0) {
-            $pages = intdiv(count($posts), $limit['limit']);
+        if (intdiv(count($posts), $limit->limit) == 0) {
+            $pages = count($posts);
         } else {
-            $pages = intdiv(count($posts), $limit) + 1;
+            $pages = intdiv(count($posts), $limit->limit) + 1;
         }
 
-        if (isset($statusSubsription['email'])) {
+        $arrayPages = [];
+        for ($i = 1; $i <= $pages; $i++) {
+            $arrayPages[] = $i;
+        }
+
+        if (isset($statusSubsription->email)) {
             $buttonSubsription = 'btn btn-outline-success';
             $buttonName = 'отписаться';
             $viewSubsription = '';
@@ -48,7 +52,7 @@ class HomeController
         } else {
             $buttonSubsription = 'btn btn-outline-primary';
             $buttonName = 'подписаться';
-            $viewSubsription = '<input type="text" name="email" value="введите email"><br>';
+            $viewSubsription = '<input type="email" name="email" required placeholder="введите email"><br>';
             $textSubscription = 'подписатьля на рассылку новостей о новых постах';
         }
 
@@ -60,25 +64,29 @@ class HomeController
                 'buttonSubsription' => $buttonSubsription,
                 'buttonName' => $buttonName,
                 'viewSubsription' => $viewSubsription,
-                'textSubscription' => $textSubscription
+                'textSubscription' => $textSubscription,
+                'arrayPages' => $arrayPages
             ]);
     }
 
-    public function showPost($id)
+    public function showPost()
     {
         $idUser = $_SESSION['userId'] ?? '';
-        $emailUser = User::where('id', $idUser)->first();
-        $email = $emailUser->email;
         $idPost = $_POST['id'];
+        $_SESSION['idPost'] = $idPost;
         $post = Post::where('id', $idPost)->first();
-        $statusSubsription = Subscription::where('email', $email)
-            ->first();
+        $emailUser = User::where('id', $idUser)->first();
+        if (isset($emailUser->email)) {
+            $email = $emailUser->email;
+            $statusSubsription = Subscription::where('email', $email)->first();
+        }
+
         if (isset($statusSubsription['email']) && isset($_SESSION['userId'])) {
             $buttonSubsription = 'btn btn-outline-success';
             $buttonName = 'отписаться';
             $viewSubsription = '';
             $textSubscription = 'отписаться от рассылки новостей о новых постах';
-        } elseif ((isset($_SESSION['userId'])) && !isset($statusSubsription['email'])) {
+        } elseif ((isset($_SESSION['userId'])) && !isset($statusSubsription->email)) {
             $buttonSubsription = 'btn btn-outline-primary';
             $buttonName = 'подписаться';
             $viewSubsription = '';
@@ -86,9 +94,12 @@ class HomeController
         } else {
             $buttonSubsription = 'btn btn-outline-primary';
             $buttonName = 'подписаться';
-            $viewSubsription = '<input type="text" name="text" value="<?= $buttonName?>"><br>';
+            $viewSubsription = '<input required="" type="email" name="text" value=""><br>';
             $textSubscription = 'подписатьля на рассылку новостей о новых постах';
         }
+
+        $comments = Comment::where ('post_id', $idPost)->get();
+
         return new View('homepage.post',
             [
                 'title' => 'Пост',
@@ -96,7 +107,8 @@ class HomeController
                 'buttonSubsription' => $buttonSubsription,
                 'buttonName' => $buttonName,
                 'viewSubsription' => $viewSubsription,
-                'textSubscription' => $textSubscription
+                'textSubscription' => $textSubscription,
+                'comments' => $comments
             ]);
     }
 

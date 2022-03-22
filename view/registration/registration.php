@@ -30,7 +30,7 @@ if (!isset($error)) {
         <input type="checkbox" name="check" id="check" value="">
         <label for="check">согласен с правилами сайта *</label>
         <br>
-        <button id="registration" name="send" type="submit" class="btn btn-primary">регистрация</button>
+        <button id="registration" name="registration" type="submit" class="btn btn-primary">регистрация</button>
     </form>
     <div><?= $error ?></div>
 

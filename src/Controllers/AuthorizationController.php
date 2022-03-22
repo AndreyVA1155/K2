@@ -13,16 +13,18 @@ class AuthorizationController
 {
     public function authorization()
     {
+        $user = '';
         $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
-        $user = '';
         if (isset($_POST['send'])) {
-            $user = User::where('email', $email)
-                ->get();
-            foreach ($user as $user1) {
-                if ($user1['email'] == $email && password_verify($password, $user1['password'])) {
-                    $_SESSION['userId'] = $user1['id'];
-                }
+            $user = User::where('email', $email)->first();
+                if ($user->email == $email && password_verify($password, $user->password )) {
+                    $_SESSION['userId'] = $user->id ;
+                    if (isset($user->status->name)) {
+                        $_SESSION['status_user'] = $user->status->name;
+                    }
+                    header('Location: /');
+
             }
         }
         return new View('authorization.authorization',

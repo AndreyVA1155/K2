@@ -13,13 +13,13 @@ class AdminShowAllCommentsController
 {
     public function showAllComments()
     {
-        $comments = Comment::all();
+        $сomments = Comment::all();
 
         return new View('admin.admin',
             [
                 'title' => 'Все комментрарии',
                 'page' => 'comments',
-                'comments' => $comments
+                'сomments' => $сomments
             ]);
     }
 }

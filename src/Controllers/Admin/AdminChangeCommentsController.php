@@ -20,6 +20,7 @@ class AdminChangeCommentsController
         $statusComment = ['на модерации', 'опубликован'];
         $users = User::all();
         $posts = Post::all();
+        var_dump($comment->users)->name;
 
         if (isset($_POST['changeComment'])) {
             $id = $_POST['id'];
@@ -31,6 +32,11 @@ class AdminChangeCommentsController
             $comment->user->surname = $user[1];
             $comment->post->head = $_POST['headPost'];
             $comment->save();
+        }
+
+        if (isset($_POST['deleteComment'])) {
+            $comment->delete();
+            header('Location: /admin/allComments');
         }
 
         return new View(

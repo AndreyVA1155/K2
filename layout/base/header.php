@@ -33,13 +33,14 @@ use App\Models\User;
                     <?php
                     $userId = $_SESSION['userId'];
                     $user = User::where('id', $userId)->first();
-                    $status = $user->status->name;
-                    if ($status == 'Администратор') {
-                        ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/admin">Админка</a>
-                        </li>
-                    <?php } ?>
+                    if (isset($user->status->name)) {
+                        $status = $user->status->name;
+                        if ($status == 'Администратор') { ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin">Админка</a>
+                            </li>
+                        <?php }
+                    }?>
                     <li class="nav-item">
                         <a class="nav-link" href="/staticPage">Статичная ссылка</a>
                     </li>

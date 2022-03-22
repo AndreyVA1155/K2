@@ -32,19 +32,15 @@ class AdminShowAllPostController
 
     }
 
-    public function readPost($id)
+    public function readPost()
     {
-        $url = $_SERVER['REQUEST_URI'];
-        $url = explode('/', $url);
-        $id = $url[3];
+        $id = $_POST['id'];
         $post = Post::where('id', $id)->first();
-        $page = 'post';
         return new View('admin.post',
             [
                 'title' => 'Пост',
                 'post' => $post,
-                'page' => $page,
-                'id' => $id
+                'page' => 'post'
             ]);
     }
 }

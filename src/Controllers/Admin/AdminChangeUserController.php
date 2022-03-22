@@ -17,24 +17,29 @@ class AdminChangeUserController
     public function changesUser()
     {
         $id = $_POST['id'];
-        $user = User::where('id', $id)->first();
+        $user1 = User::where('id', $id)->first();
 
         $status = Status::all();
 
         if (isset($_POST['name'])) {
-            $user->name = $_POST['name'];
-            $user->surname = $_POST['surname'];
-            $user->email = $_POST['email'];
-            $user->description = $_POST['description'];
-            $user->status_user = $_POST['userStatus'];
-            $user->save();
+            $user1->name = $_POST['name'];
+            $user1->surname = $_POST['surname'];
+            $user1->email = $_POST['email'];
+            $user1->description = $_POST['description'];
+            $user1->status_user = $_POST['userStatus'];
+            $user1->save();
+        }
+
+        if (isset($_POST['deleteUser'])) {
+            $user1->delete();
+            header('Location: /admin/allUsers');
         }
 
         return new View('admin.user',
             [
                 'title' => 'Изменение пользователя',
                 'id' => $id,
-                'user' => $user,
+                'user1' => $user1,
                 'status' => $status
             ]);
     }

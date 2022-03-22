@@ -18,6 +18,7 @@ class AdminChangeParamSiteController
             $param = ParamSite::where('id', 1)->first();
             $param->limit = $_POST['limit'];
             $param->save();
+            header('Location: /admin/changeParamSite');
         }
 
         return new View('admin.admin',
@@ -28,3 +29,4 @@ class AdminChangeParamSiteController
             ]);
     }
 }
+

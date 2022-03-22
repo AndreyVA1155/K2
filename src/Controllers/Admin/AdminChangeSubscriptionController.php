@@ -21,6 +21,10 @@ class AdminChangeSubscriptionController
                 $subsription->save();
             }
         }
+        if (isset($_POST['deleteSubscription'])) {
+            $subsription->delete();
+            header('Location: /admin/allSubscription');
+        }
 
         return new View('admin.subscription',
             [
